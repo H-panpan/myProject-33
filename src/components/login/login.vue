@@ -44,7 +44,7 @@ export default {
         if (valid) {
           this.$http({
             method: 'post',
-            url: 'http://localhost:8888/api/private/v1/login',
+            url: 'login',
             data: this.useObj
           }).then(res => {
             let {data, meta} = res.data
