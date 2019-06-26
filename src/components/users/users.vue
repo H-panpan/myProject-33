@@ -1,10 +1,6 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <bread one='用户管理' two='用户列表' />
     <el-row>
       <el-col :span="6">
         <div class="mypage">
@@ -142,6 +138,7 @@
 </template>
 
 <script>
+import bread from '../layout/breadnav.vue'
 export default {
   data () {
     return {
@@ -174,6 +171,9 @@ export default {
         rid: ''
       }
     }
+  },
+  components: {
+    bread: bread
   },
   methods: {
     getDataList () {

@@ -1,0 +1,20 @@
+<div>
+  <bread  one="权限管理" two="权限列表"/>
+  <el-table :data="rightslable" :border='true' style="width: 100%" class='myrights' >
+    <el-table-column type="index" width="50">
+    </el-table-column>
+    <el-table-column prop="authName" label="权限名称" width="180">
+    </el-table-column>
+    <el-table-column prop="path" label="路径" width="180">
+    </el-table-column>
+    <el-table-column label="层级" width="180">
+      <!-- 打印数据源: slot-scope -->
+      <template slot-scope="scope">
+        <span v-if="scope.row.level==='0'">一级</span>
+        <span v-if="scope.row.level==='1'">二级</span>
+        <span v-if="scope.row.level==='2'">三级</span>
+        
+      </template>
+    </el-table-column>
+  </el-table>
+</div>
