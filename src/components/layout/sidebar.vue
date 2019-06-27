@@ -38,9 +38,9 @@
               <i class="el-icon-menu"></i>
               <span>分类参数</span>
               </el-menu-item>
-              <el-menu-item index="3-3">
+              <el-menu-item index="/categories">
               <i class="el-icon-menu"></i>
-              <span>商品</span>
+              <span>商品分类</span>
               </el-menu-item>
           </el-submenu>
            <el-submenu index="4">
