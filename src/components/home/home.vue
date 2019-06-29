@@ -26,11 +26,11 @@ export default {
     SideBar: SideBar
   },
   mounted () {
-    let token = window.localStorage.getItem('token')
-    if (!token) {
-      this.$router.push('/login')
-      this.$message.error('你还没登录,请先登录')
-    }
+    // let token = window.localStorage.getItem('token')
+    // if (!token) {
+    //   this.$router.push('/login')
+    //   this.$message.error('你还没登录,请先登录')
+    // }
   }
 }
 </script>

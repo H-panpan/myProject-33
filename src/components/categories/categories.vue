@@ -38,16 +38,16 @@
     <el-dialog title="新增分类" :visible.sync="showcate">
       <el-form>
         <el-form-item label="分类名称" :label-width="formLabelWidth">
-          <el-input autocomplete="off"></el-input>
+          <el-input autocomplete="off" v-model='cascvalue'></el-input>
         </el-form-item>
         <el-form-item label="选择分类" :label-width="formLabelWidth">
           {{casevalue}}
-          <el-cascader v-model='casevalue' :options="optionsarr" :props="propsObj"></el-cascader>
+          <el-cascader placeholder='默认添加一级分类' clearable v-model='casevalue' :options="optionsarr" :props="propsObj"></el-cascader>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="showcate = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button type="primary" @click="cascaddfn">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -71,7 +71,9 @@ export default {
       casevalue: [],
       propsObj: { expandTrigger: 'hover',
         label: 'cat_name',
-        value: 'cat_id'}
+        value: 'cat_id',
+        checkStrictly: true},
+      cascvalue: ''
     }
   },
   components: {
@@ -125,6 +127,28 @@ export default {
           this.$message.error(meta.msg)
         }
       })
+    },
+    cascaddfn () {
+      let pid = this.casevalue.length === 0 ? 0 : this.casevalue[this.casevalue.length - 1]
+      this.$http({
+        method: 'post',
+        url: 'categories',
+        data: {
+          cat_pid: pid,
+          cat_name: this.cascvalue,
+          cat_level: this.casevalue.length
+        }
+      }).then(res => {
+        let {meta} = res.data
+        if (meta.status === 201) {
+          this.$message.success(meta.msg)
+          this.getcllist()
+        } else {
+          this.$message.error(meta.msg)
+        }
+      })
+
+      this.showcate = false
     }
   },
   mounted () {
